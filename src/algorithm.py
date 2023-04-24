@@ -15,6 +15,7 @@ def bubble_sort(arr):
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr, nunmber_of_swaps
 
+
 def selection_sort(arr):
     """generic selection sort algorithm
 
@@ -33,6 +34,7 @@ def selection_sort(arr):
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
         number_of_swaps += 1
     return arr, number_of_swaps
+
 
 def insertion_sort(arr):
     """generic insertion sort algorithm
@@ -53,6 +55,7 @@ def insertion_sort(arr):
             j -= 1
         arr[j + 1] = key
     return arr, number_of_swaps
+
 
 def merge_sort(arr):
     """generic merge sort algorithm
