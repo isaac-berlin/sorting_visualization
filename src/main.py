@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from random import randint
 from time import perf_counter
-from algorithm import bubble_sort, selection_sort, insertion_sort, merge_sort
+from algorithm import *
 import pandas as pd
 
 
@@ -62,7 +62,7 @@ def make_list(start: int, stop: int) -> list:
 
 def main():
     MIN_SIZE = 10
-    MAX_SIZE = 1000
+    MAX_SIZE = 50
 
     lst = make_list(MIN_SIZE, MAX_SIZE)
     bubble_time, bubble_swaps = test(bubble_sort, lst)
@@ -75,11 +75,15 @@ def main():
 
     lst = make_list(MIN_SIZE, MAX_SIZE)
     merge_time, merge_swaps = test(merge_sort, lst)
+    
+    lst = make_list(MIN_SIZE, MAX_SIZE)
+    bogo_time, bogo_swaps = test(bogo_sort, lst)
 
     plt.plot(bubble_time, label="Bubble Sort")
     plt.plot(selection_time, label="Selection Sort")
     plt.plot(insertion_time, label="Insertion Sort")
     plt.plot(merge_time, label="Merge Sort")
+    plt.plot(bogo_time, label="Bogo Sort")
 
     plt.xlabel("Size of array")
     plt.ylabel("Time (s)")

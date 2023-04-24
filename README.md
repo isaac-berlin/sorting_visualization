@@ -8,6 +8,7 @@ This project is a visualization of sorting algorithms. The sorting algorithms th
 - Selection Sort
 - Insertion Sort
 - Merge Sort
+- Bogo Sort
 
 This project is written in python and uses the matplotlib library for data visualization.
 

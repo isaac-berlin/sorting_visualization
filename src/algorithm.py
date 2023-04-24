@@ -1,3 +1,5 @@
+from random import shuffle
+
 def bubble_sort(arr):
     """generic bubble sort algorithm
 
@@ -95,3 +97,18 @@ def merge_sort(arr):
             j += 1
             k += 1
     return arr, (number_of_swaps+left_swaps+right_swaps)
+
+def bogo_sort(arr):
+    """generic bogo sort algorithm
+
+    Args:
+        arr (list): list of integers to be sorted
+
+    Returns:
+        tuple: a tuple containing a sorted list and the number of swaps performed
+    """
+    number_of_swaps = 0
+    while not all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1)):
+        shuffle(arr)
+        number_of_swaps += 1
+    return arr, number_of_swaps
