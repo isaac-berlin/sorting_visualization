@@ -1,4 +1,12 @@
 def bubble_sort(arr):
+    """generic bubble sort algorithm
+
+    Args:
+        arr (list): list of integers to be sorted
+
+    Returns:
+        tuple: a tuple containing a sorted list and the number of swaps performed
+    """
     nunmber_of_swaps = 0
     for i in range(len(arr)):
         for j in range(0, len(arr) - i - 1):
@@ -8,6 +16,14 @@ def bubble_sort(arr):
     return arr, nunmber_of_swaps
 
 def selection_sort(arr):
+    """generic selection sort algorithm
+
+    Args:
+        arr (list): list of integers to be sorted
+
+    Returns:
+        tuple: a tuple containing a sorted list and the number of swaps performed
+    """
     number_of_swaps = 0
     for i in range(len(arr)):
         min_idx = i
@@ -19,6 +35,14 @@ def selection_sort(arr):
     return arr, number_of_swaps
 
 def insertion_sort(arr):
+    """generic insertion sort algorithm
+
+    Args:
+        arr (list): list of integers to be sorted
+
+    Returns:
+        tuple: a tuple containing a sorted list and the number of swaps performed
+    """
     number_of_swaps = 0
     for i in range(1, len(arr)):
         key = arr[i]
@@ -31,6 +55,14 @@ def insertion_sort(arr):
     return arr, number_of_swaps
 
 def merge_sort(arr):
+    """generic merge sort algorithm
+
+    Args:
+        arr (list): list of integers to be sorted
+
+    Returns:
+        tuple: a tuple containing a sorted list and the number of swaps performed
+    """
     number_of_swaps = 0
     right_swaps = 0
     left_swaps = 0
