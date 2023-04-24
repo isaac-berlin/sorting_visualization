@@ -20,81 +20,41 @@ def test(algorithm, arrs):
     time = [toks[i] - tiks[i] for i in range(len(tiks))]
     return time, swaps
 
+def make_list(start, stop):
+    lst = []
+    for i in range(start, stop):
+        sublst = [randint(0,100) for j in range(i)]
+        lst.append(sublst)
+    return lst
+
+
 def main():
-    # store results in a dictionary
-    results = {}
-
-    # bubble_sort
-    results["bubble_sort"] = {}
+    MIN_SIZE = 10
+    MAX_SIZE = 1000
     
-    # test 100 random arrays of size 100
-    arrs = [[randint(0, 100) for i in range(100)] for j in range(100)]
-    time, swaps = test_avg(bubble_sort, arrs)
-    results["bubble_sort"][100] = {"time": time, "swaps": swaps}
+    lst = make_list(MIN_SIZE, MAX_SIZE)    
+    bubble_time, bubble_swaps = test(bubble_sort, lst)
     
-    # test 100 random arrays of size 10,000
-    # arrs = [[randint(0, 100) for i in range(10_000)] for j in range(100)]
-    # time, swaps = test_avg(bubble_sort, arrs)
-    results["bubble_sort"][10_000] = {"time": time, "swaps": swaps}
+    lst = make_list(MIN_SIZE, MAX_SIZE) 
+    selection_time, selection_swaps = test(selection_sort, lst)
     
+    lst = make_list(MIN_SIZE, MAX_SIZE) 
+    insertion_time, insertion_swaps = test(insertion_sort, lst)
     
-    # selection_sort
-    results["selection_sort"] = {}
+    lst = make_list(MIN_SIZE, MAX_SIZE) 
+    merge_time, merge_swaps = test(merge_sort, lst)
     
-    # test 100 random arrays of size 100
-    arrs = [[randint(0, 100) for i in range(100)] for j in range(100)]
-    time, swaps = test_avg(selection_sort, arrs)
-    results["selection_sort"][100] = {"time": time, "swaps": swaps}
+    plt.plot(bubble_time, label="Bubble Sort")
+    plt.plot(selection_time, label="Selection Sort")
+    plt.plot(insertion_time, label="Insertion Sort")
+    plt.plot(merge_time, label="Merge Sort")
     
-    # test 100 random arrays of size 10,000
-    # arrs = [[randint(0, 100) for i in range(10_000)] for j in range(100)]
-    # time, swaps = test_avg(selection_sort, arrs)
-    results["selection_sort"][10_000] = {"time": time, "swaps": swaps}
-    
-    
-    # insertion_sort
-    results["insertion_sort"] = {}
-    
-    # test 100 random arrays of size 100
-    arrs = [[randint(0, 100) for i in range(100)] for j in range(100)]
-    time, swaps = test_avg(insertion_sort, arrs)
-    results["insertion_sort"][100] = {"time": time, "swaps": swaps}
-    
-    # test 100 random arrays of size 10,000
-    # arrs = [[randint(0, 100) for i in range(10_000)] for j in range(100)]
-    # time, swaps = test_avg(insertion_sort, arrs)
-    results["insertion_sort"][10_000] = {"time": time, "swaps": swaps}
-    
-    
-    # merge_sort
-    results["merge_sort"] = {}
-
-    # test 100 random arrays of size 100
-    arrs = [[randint(0, 100) for i in range(100)] for j in range(100)]
-    time, swaps = test_avg(merge_sort, arrs)
-    results["merge_sort"][100] = {"time": time, "swaps": swaps}
-    
-    # test 100 random arrays of size 10,000
-    # arrs = [[randint(0, 100) for i in range(10_000)] for j in range(100)]
-    # time, swaps = test_avg(merge_sort, arrs)
-    results["merge_sort"][10_000] = {"time": time, "swaps": swaps}
-    
-    bubble = [results["bubble_sort"][100]["swaps"], results["bubble_sort"][10_000]["swaps"]]
-    selection = [results["selection_sort"][100]["swaps"], results["selection_sort"][10_000]["swaps"]]
-    insertion = [results["insertion_sort"][100]["swaps"], results["insertion_sort"][10_000]["swaps"]]
-    merge = [results["merge_sort"][100]["swaps"], results["merge_sort"][10_000]["swaps"]]
-    
-    df = pd.DataFrame({"Bubble Sort": bubble, "Selection Sort": selection, "Insertion Sort": insertion, "Merge Sort": merge}, index=[100, 10_000])
-    df.plot(kind="bar", title="Swaps", figsize=(10, 5), subplots=True, layout=(2, 2), xlabel="Array Size", ylabel="Swaps")
+    plt.xlabel("Size of array")
+    plt.ylabel("Time (s)")
+    plt.title("Time Complexity of Sorting Algorithms")
+    plt.legend()
     plt.show()
     
-    print(bubble)
-    print(selection)
-    print(insertion)
-    print(merge)
-    
-    
-    print(results)
     
 if __name__ == "__main__":
     main()
