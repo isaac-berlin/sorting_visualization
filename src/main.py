@@ -75,15 +75,11 @@ def main():
 
     lst = make_list(MIN_SIZE, MAX_SIZE)
     merge_time, merge_swaps = test(merge_sort, lst)
-    
-    lst = make_list(MIN_SIZE, MAX_SIZE)
-    bogo_time, bogo_swaps = test(bogo_sort, lst)
 
     plt.plot(bubble_time, label="Bubble Sort")
     plt.plot(selection_time, label="Selection Sort")
     plt.plot(insertion_time, label="Insertion Sort")
     plt.plot(merge_time, label="Merge Sort")
-    plt.plot(bogo_time, label="Bogo Sort")
 
     plt.xlabel("Size of array")
     plt.ylabel("Time (s)")
