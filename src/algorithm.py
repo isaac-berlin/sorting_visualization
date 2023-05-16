@@ -76,33 +76,40 @@ def merge_sort(arr):
     number_of_swaps = 0
     number_of_comparisons = 0
     
-    if len(arr) > 1:
-        mid = len(arr) // 2
-        left = arr[:mid]
-        right = arr[mid:]
-        left_results = merge_sort(left)
-        right_results = merge_sort(right)
-        i = j = k = 0
-        while i < len(left) and j < len(right):
+    def merge(left_arr, right_arr):
+        """gereic merge function for merge sort
+
+        Args:
+            left_arr (list): left array to be merged
+            right_arr (list): right array to be merged
+        """
+        nonlocal number_of_swaps
+        nonlocal number_of_comparisons
+        merged_arr = []
+        
+        while len(left_arr) > 0 and len(right_arr) > 0:
             number_of_comparisons += 1
-            if left[i] < right[j]:
-                arr[k] = left[i]
-                i += 1
+            if left_arr[0] < right_arr[0]:
+                number_of_swaps += 1
+                merged_arr.append(left_arr.pop(0))
             else:
-                arr[k] = right[j]
-                j += 1
-            k += 1
-        while i < len(left):
-            number_of_swaps += 1
-            arr[k] = left[i]
-            i += 1
-            k += 1
-        while j < len(right):
-            number_of_swaps += 1
-            arr[k] = right[j]
-            j += 1
-            k += 1
-    return arr, (number_of_swaps+left_results[1]+right_results[1]), (number_of_comparisons+left_results[2]+right_results[2])
+                merged_arr.append(right_arr.pop(0))
+        
+        while len(left_arr) > 0:
+            merged_arr.append(left_arr.pop(0))
+            
+        while len(right_arr) > 0:
+            merged_arr.append(right_arr.pop(0))
+            
+        return merged_arr
+    
+    if len(arr) == 1:
+         return arr, number_of_swaps, number_of_comparisons 
+
+    left_arr, left_swaps, left_comparisons = merge_sort(arr[:len(arr) // 2])
+    right_arr, right_swaps, right_comparisons = merge_sort(arr[len(arr) // 2:])
+    
+    return merge(left_arr, right_arr), number_of_swaps, number_of_comparisons
 
 def bogo_sort(arr):
     """generic bogo sort algorithm
@@ -122,6 +129,6 @@ def bogo_sort(arr):
     return arr, number_of_swaps, number_of_comparisons
 
 
-lst = [2, 8, 5, 3, 9, 4]
-sorted = insertion_sort(lst)
+lst = [2, 8, 5, 3, 9, 4, 1, 7]
+sorted = merge_sort(lst)
 print(sorted)
