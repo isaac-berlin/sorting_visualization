@@ -37,8 +37,9 @@ def selection_sort(arr):
             number_of_comparisons += 1
             if arr[min_idx] > arr[j]:
                 min_idx = j
+        if min_idx != i:
+            number_of_swaps += 1
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
-        number_of_swaps += 1
     return arr, number_of_swaps, number_of_comparisons
 
 
@@ -54,14 +55,12 @@ def insertion_sort(arr):
     number_of_swaps = 0
     number_of_comparisons = 0
     for i in range(1, len(arr)):
-        number_of_comparisons += 1
-        key = arr[i]
-        j = i - 1
-        while j >= 0 and key < arr[j]:
+        j = i 
+        while j > 0 and arr[j] < arr[j-1]:
+            number_of_comparisons += 1
             number_of_swaps += 1
-            arr[j + 1] = arr[j]
+            arr[j], arr[j - 1] = arr[j - 1], arr[j]
             j -= 1
-        arr[j + 1] = key
     return arr, number_of_swaps, number_of_comparisons
 
 
@@ -121,3 +120,8 @@ def bogo_sort(arr):
         number_of_swaps += 1
         number_of_comparisons += 1
     return arr, number_of_swaps, number_of_comparisons
+
+
+lst = [2, 8, 5, 3, 9, 4]
+sorted = insertion_sort(lst)
+print(sorted)
