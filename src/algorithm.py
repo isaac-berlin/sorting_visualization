@@ -127,8 +127,3 @@ def bogo_sort(arr):
         number_of_swaps += 1
         number_of_comparisons += 1
     return arr, number_of_swaps, number_of_comparisons
-
-
-lst = [2, 8, 5, 3, 9, 4, 1, 7]
-sorted = merge_sort(lst)
-print(sorted)
